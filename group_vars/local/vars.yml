@@ -1,0 +1,12 @@
+pacman_packages:
+  - docker
+  - xclip
+  - the_silver_searcher
+  - python-pip
+  - ruby
+  - go
+  - gnu-netcat
+  - bind-tools
+  - net-tools
+  - thunar-archive-plugin
+  - thunar-volman

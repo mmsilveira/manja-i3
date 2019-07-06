@@ -1,0 +1,6 @@
+- name: Pacman install packages
+  pacman:
+    name: "{{ item }}" 
+    state: present
+  loop: "{{ pacman_packages }}"
+

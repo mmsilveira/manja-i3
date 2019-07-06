@@ -1,0 +1,23 @@
+---
+- name: Start setup
+  hosts: localhost
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: Full system upgrade
+      pacman:
+        update_cache: yes
+        upgrade: yes
+    - name: Git configure
+      command: "{{ item }}"
+      become_user: msilveira
+      with_items:
+        - git config --global user.email "msilveira.ti@gmail.com"
+        - git config --global user.name "Moises Silveira"
+
+  roles:
+    - role: lib/install
+      tags:
+        - install 
+
