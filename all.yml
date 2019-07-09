@@ -2,22 +2,35 @@
 - name: Start setup
   hosts: localhost
   become: yes
+  become_user: msilveira
   gather_facts: no
 
   tasks:
-    - name: Full system upgrade
+    - name: Pacman upgrade
       pacman:
         update_cache: yes
         upgrade: yes
+      become_user: msilveira
+      tags:
+        - upgrade
+    - name: AUR upgrade
+      aur: upgrade=yes
+      tags:
+        - upgrade
     - name: Git configure
       command: "{{ item }}"
-      become_user: msilveira
       with_items:
         - git config --global user.email "msilveira.ti@gmail.com"
         - git config --global user.name "Moises Silveira"
 
   roles:
-    - role: lib/install
+    - role: lib/pacman
       tags:
-        - install 
+        - pacman
+    - role: lib/aur
+      tags:
+        - aur
+    - role: lib/config
+      tags:
+        - config
 
