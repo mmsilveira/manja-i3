@@ -7,12 +7,7 @@
     create: yes
     validate: 'visudo -cf %s'
 
-- aur: name=brave skip_installed=tru
-  become: yes
-  become_user: aur_builder
-  ignore_errors: true
-
-- aur: name=brave skip_installed=tru
+- aur: name=keybase-bin skip_installed=true
   become: yes
   become_user: aur_builder
   ignore_errors: true

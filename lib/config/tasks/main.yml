@@ -1,4 +1,5 @@
 - name: Disable terminal beap
+  become_user: msilveira
   copy:
     content: "xset -b"
     dest: ~/.xprofile
