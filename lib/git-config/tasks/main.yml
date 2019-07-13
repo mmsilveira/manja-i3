@@ -1,5 +1,19 @@
-- name: Config
-  import_tasks: ./config.yml
+---
+- name: Remove ssh directory
+  file: 
+    path: ~/.ssh
+    state: absent
 
-- name: SSH
-  import_tasks: ./ssh.yml
+- name: Create ssh symbolic link
+  file:
+    src: /keybase/private/msilveira/ssh
+    dest: ~/.ssh
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    state: link
+
+- name: Git configure
+  command: "{{ item }}"
+  with_items:
+    - git config --global user.name "{{ username }}"
+    - git config --global user.email "{{ useremail }}"
