@@ -1,3 +1,5 @@
+---
+user: msilveira
 pacman_packages:
   - docker
   - xclip

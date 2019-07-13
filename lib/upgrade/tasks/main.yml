@@ -1,0 +1,10 @@
+---
+- name: Pacman upgrade
+  become_user: root
+  pacman:
+    update_cache: yes
+    upgrade: yes
+
+- name: AUR upgrade
+  become_user: root
+  aur: upgrade=yes
