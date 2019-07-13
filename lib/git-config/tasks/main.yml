@@ -1,7 +1,5 @@
----
- - name: Git configure
-   become_user: msilveira
-   command: "{{ item }}"
-   with_items:
-     - git config --global user.email "{{ username }}"
-     - git config --global user.name "{{ useremail }}"
+- name: Config
+  import_tasks: ./config.yml
+
+- name: SSH
+  import_tasks: ./ssh.yml

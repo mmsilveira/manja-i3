@@ -1,0 +1,13 @@
+---
+- name: Remove ssh directory
+  file: 
+    path: ~/.ssh
+    state: absent
+
+- name: Create ssh symbolic link
+  file:
+    src: /keybase/private/msilveira/ssh
+    dest: ~/.ssh
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    state: link
