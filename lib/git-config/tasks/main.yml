@@ -17,3 +17,5 @@
   with_items:
     - git config --global user.name "{{ username }}"
     - git config --global user.email "{{ useremail }}"
+    - git config --global --bool pull.rebase true
+    - git config --global alias.pushf "push --force-with-lease"
