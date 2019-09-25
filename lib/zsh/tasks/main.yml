@@ -1,0 +1,41 @@
+---
+- user:
+    name: aur_builder
+    group: wheel
+- lineinfile:
+    path: /etc/sudoers.d/11-install-aur_builder
+    line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+    create: yes
+    validate: 'visudo -cf %s'
+
+- aur: name={{item}} skip_installed=true
+  become: yes
+  become_user: aur_builder
+  with_items:
+    - zsh
+    - zsh-completions
+    - zsh-syntax-highlighting
+
+- name: Download oh-my-zsh installer
+  become_user: msilveira
+  get_url:
+    url: https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+    dest: ~/Downloads/
+    mode: '0700'
+
+- name: Remove old oh-my-zsh
+  become_user: msilveira
+  file:
+    path: ~/.oh-my-zsh
+    state: absent
+
+- name: Install oh-my-zsh 
+  become_user: msilveira
+  command: "{{item}}"
+  with_items:
+    - sh ~/Downloads/install.sh
+
+- name: Set default oh-my-zsh 
+  command: "{{item}}"
+  with_items:
+    - chsh -s /usr/bin/zsh

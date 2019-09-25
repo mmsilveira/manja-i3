@@ -1,11 +1,11 @@
 ---
 user: msilveira
 pacman_packages:
-  - docker
   - xclip
   - the_silver_searcher
   - python-pip
   - ruby
+  - docker
   - go
   - gnu-netcat
   - bind-tools

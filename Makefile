@@ -16,6 +16,22 @@ upgrade:
 keybase:
 	ansible-playbook -i inventory --ask-become-pass all.yml --tags="keybase"
 
+.PHONY: pacman
+pacman:
+	ansible-playbook -i inventory --ask-become-pass all.yml --tags="pacman"
+
+.PHONY: aur
+aur:
+	ansible-playbook -i inventory --ask-become-pass all.yml --tags="aur"
+
+.PHONY: zsh
+zsh:
+	ansible-playbook -i inventory --ask-become-pass all.yml --tags="zsh"
+
+.PHONY: neovim
+neovim:
+	ansible-playbook -i inventory --ask-become-pass all.yml --tags="neovim"
+
 .PHONY: config
 config:
 	ansible-playbook -i inventory --ask-become-pass all.yml --tags="config"

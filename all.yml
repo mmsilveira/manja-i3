@@ -2,7 +2,7 @@
 - name: Start setup
   hosts: local
   become: yes
-  become_user: "{{ user }}"
+  become_user: root
   gather_facts: no
 
   roles:
@@ -10,6 +10,8 @@
     - { role: lib/keybase,    tags: keybase }
     - { role: lib/git-config, tags: git }
     - { role: lib/pacman,     tags: pacman }
+    - { role: lib/neovim,     tags: neovim }
+    - { role: lib/zsh,        tags: zsh }
     - { role: lib/aur,        tags: aur }
     - { role: lib/config,     tags: config }
 

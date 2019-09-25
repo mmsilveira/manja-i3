@@ -1,3 +1,4 @@
+---
 - user:
     name: aur_builder
     group: wheel
@@ -7,12 +8,8 @@
     create: yes
     validate: 'visudo -cf %s'
 
-- aur: name=brave skip_installed=tru
+- aur: name={{item}} skip_installed=true
   become: yes
   become_user: aur_builder
-  ignore_errors: true
-
-- aur: name=brave skip_installed=tru
-  become: yes
-  become_user: aur_builder
-  ignore_errors: true
+  with_items:
+    - brave

@@ -10,6 +10,7 @@
     dest: ~/.ssh
     owner: "{{ user }}"
     group: "{{ user }}"
+    force: yes
     state: link
 
 - name: Git configure
